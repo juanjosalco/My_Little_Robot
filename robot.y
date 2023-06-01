@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include "y.tab.h"
 extern int yylval;
-int deg;
 int yylex();
 void yyerror(const char *s);
 %}
@@ -27,43 +26,43 @@ ACTION: ROTATION
  | MOVEMENT { printf("MOV %d\n", $1); }
  ;
 
-ROTATION: ROTATION_VERB DEG_QUANTITY DEGREES CLK { deg = $2; printf("TURN %d\n", $4); }
+ROTATION: ROTATION_VERB DEG_QUANTITY CLK { printf("TURN %d\n", $3); }
  | ROTATION_VERB DEG_QUANTITY DEGREES { printf("TURN %d\n", $2); }
  | ROTATION_VERB DIR { printf("TURN 270\n"); }
  ;
 
-CLK: TO THE RIGHT { 
-    if (deg == 90) {
+CLK: DEGREES TO THE RIGHT { 
+    if ($1 == 90) {
         $$ = 270;
-    } else if (deg == 270) {
+    } else if ($1 == 270) {
         $$ = 90;
     } else {
-        $$ = deg;
+        $$ = $1;
     }
  }
- | TO THE LEFT { 
-    $$ = deg;
+ | DEGREES TO THE LEFT { 
+    $$ = $1;
   }
- | CLOCKWISE { 
-    if (deg == 90) {
+ | DEGREES CLOCKWISE { 
+    if ($1 == 90) {
         $$ = 270;
-    } else if (deg == 270) {
+    } else if ($1 == 270) {
         $$ = 90;
     } else {
-        $$ = deg;
+        $$ = $1;
     }
   }
- | COUNTERCLOCKWISE { $$ = deg; }
- | RIGHT { 
-    if (deg == 90) {
+ | DEGREES COUNTERCLOCKWISE { $$ = $1; }
+ | DEGREES RIGHT { 
+    if ($1 == 90) {
         $$ = 270;
-    } else if (deg == 270) {
+    } else if ($1 == 270) {
         $$ = 90;
     } else {
-        $$ = deg;
+        $$ = $1;
     }
   }
- | LEFT { $$ = deg; }
+ | DEGREES LEFT { $$ = $1; }
  ;
 
 MOVEMENT: MOVEMENT_VERB DISTANCE UNITS { $$ = $2; }
