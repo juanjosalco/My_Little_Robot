@@ -14,8 +14,8 @@ int currentPositionY = 0;
 
 // Sets the Direction of the Robot
 
-void setDirection(string direction){
-    if(direction == "90"){
+void setDirection(int direction){
+    if(direction == 90){
         if(currentDirection == "moveRight"){
             currentDirection = "moveUp";
         } else if(currentDirection == "moveUp"){
@@ -25,7 +25,7 @@ void setDirection(string direction){
         } else {
             currentDirection = "moveRight";
         }
-    } else if (direction == "180"){
+    } else if (direction == 180){
         if(currentDirection == "moveRight"){
             currentDirection = "moveLeft";
         } else if(currentDirection == "moveUp"){
@@ -35,7 +35,7 @@ void setDirection(string direction){
         } else {
             currentDirection = "moveUp";
         }
-    } else if(direction == "270"){
+    } else if(direction == 270){
         if(currentDirection == "moveRight"){
             currentDirection = "moveDown";
         } else if(currentDirection == "moveUp"){
@@ -45,7 +45,7 @@ void setDirection(string direction){
         } else {
             currentDirection = "moveLeft";
         }
-    } else if(direction == "360"){
+    } else if(direction == 360){
         if(currentDirection == "moveRight"){
             currentDirection = "moveRight";
         } else if(currentDirection == "moveUp"){
@@ -67,24 +67,32 @@ void setDirection(string direction){
 void moveRobot(int numOfSteps){
     if(currentDirection == "moveRight"){
         for(int i = 0; i < numOfSteps; i++){
-            matrix[currentPositionY][i] = '*';
+            matrix[currentPositionY][currentPositionX + i] = '*';
         }
         currentPositionX += numOfSteps;
     } else if(currentDirection == "moveLeft"){
-        for(int i = currentPositionX; i >= numOfSteps; i--){
-            matrix[currentPositionY][i] = '*';
+        for(int i = 0; i < numOfSteps; i++){
+            matrix[currentPositionY][currentPositionX - i] = '*';
         }
         currentPositionX -= numOfSteps;
     } else if(currentDirection == "moveDown"){
         for(int i = 0; i < numOfSteps; i++){
-            matrix[i][currentPositionX] = '*';
+            matrix[currentPositionY + i][currentPositionX] = '*';
         }
         currentPositionY += numOfSteps;
     } else{
-        for(int i = currentPositionY; i >= numOfSteps; i--){
-            matrix[i][currentPositionX] = '*';
+        for(int i = 0; i < numOfSteps; i++){
+            matrix[currentPositionY - i][currentPositionX] = '*';
         }
         currentPositionY -= numOfSteps;
+    }
+}
+
+void instructionSelected(string inst, int val){
+    if(inst == "MOV"){
+        moveRobot(val);
+    } else{
+        setDirection(val);
     }
 }
 
@@ -94,11 +102,14 @@ void readFile(){
     string nameOfFile = "instructions.txt";
     ifstream archivo(nameOfFile.c_str());
 
-    string linea;
+    string instruction;
+    int value;
 
-    while(getline(archivo, linea)){
-        cout << linea << endl;
+    while(!archivo.eof()){
+        archivo >> instruction >> value;
+        instructionSelected(instruction, value);
     }
+    archivo.close();
 }
 
 // Fills the Matrix with Initial Values
@@ -131,14 +142,9 @@ int main(){
     cout << "\n!--------------- Welcome to MyLittleRobot ---------------!\n\n";
     // Instructions to Test
     showMatrix();
-    moveRobot(4);
-    setDirection("180");
-    moveRobot(2);
-    setDirection("90");
-    moveRobot(3);
-    setDirection("180");
-    moveRobot(2);
     // Sets the end of the Robot
+    readFile();
+    cout << endl;
     matrix[currentPositionY][currentPositionX] = 'X';
     showMatrix();
 
