@@ -21,6 +21,7 @@ extern int yylval;
 "right" { return RIGHT; }
 "left" { return LEFT; }
 "back" { return BACK; }
+"backwards" { return BACKWARDS; }
 "front"|"forward" { return FRONT; }
 "clockwise" { return CLOCKWISE; }
 "counterclockwise" { return COUNTERCLOCKWISE; }
