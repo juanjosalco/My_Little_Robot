@@ -9,8 +9,8 @@ using namespace std;
 
 vector<vector<char> > matrix(10, vector<char>(10));
 string currentDirection = "moveRight";
-int currentPositionX = 0;
-int currentPositionY = 0;
+int currentPositionX = 5;
+int currentPositionY = 5;
 
 // Sets the Direction of the Robot
 
@@ -62,6 +62,26 @@ void setDirection(int direction){
     }
 }
 
+//Check the limits of the Matrix
+void checkLimits(int value){
+    if (currentDirection == "moveRight" && currentPositionX + value > 10){
+        cout << "! INVALID MOVE !" << endl;
+        exit(-1);
+    }
+    else if (currentDirection == "moveLeft" && currentPositionX - value < 0){
+        cout << "! INVALID MOVE !" << endl;
+        exit(-1);
+    }
+    else if (currentDirection == "moveDown" && currentPositionY + value > 10){
+        cout << "! INVALID MOVE !" << endl;
+        exit(-1);
+    }
+    else if (currentDirection == "moveUp" && currentPositionY - value < 0){
+        cout << "! INVALID MOVE !" << endl;
+        exit(-1);
+    }
+}
+
 // Moves the Robot the X Steps Given
 
 void moveRobot(int numOfSteps){
@@ -90,9 +110,12 @@ void moveRobot(int numOfSteps){
 
 void instructionSelected(string inst, int val){
     if(inst == "MOV"){
+        checkLimits(val);
         moveRobot(val);
-    } else{
+    } else if(inst == "TURN"){
         setDirection(val);
+    } else {
+        exit(-1);
     }
 }
 
@@ -102,15 +125,17 @@ void readFile(){
     string nameOfFile = "instructions.txt";
     ifstream archivo(nameOfFile.c_str());
 
-    string instruction;
-    int value;
+    string instruction = "";
+    int value = 0;
 
     while(!archivo.eof()){
         archivo >> instruction >> value;
         instructionSelected(instruction, value);
     }
     archivo.close();
+    cout << endl << "Robot has finished the instructions" << endl;
 }
+
 
 // Fills the Matrix with Initial Values
 
@@ -132,6 +157,7 @@ void showMatrix(){
         cout << endl;
     }
 }
+
 
 int main(){
     // Initializes the Matrix
