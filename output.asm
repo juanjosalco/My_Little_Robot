@@ -1,0 +1,9 @@
+TURN 270
+Turn 270
+MOV 5
+MOV 10
+Turn 180
+MOV 15
+Turn 180
+MOV 5
+TURN 180
