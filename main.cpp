@@ -122,7 +122,7 @@ void instructionSelected(string inst, int val){
 // Reads the Input of a File
 
 void readFile(){
-    string nameOfFile = "instructions.txt";
+    string nameOfFile = "output.asm";
     ifstream archivo(nameOfFile.c_str());
 
     string instruction = "";
