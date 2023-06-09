@@ -1,11 +1,18 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "y.tab.h"
+
 extern int yylval;
 int yylex();
 void yyerror(const char *s);
 FILE *output_file;
+FILE *input_file;
+extern FILE *yyin;
+extern FILE *output_file;
+
+#define MAX_SENTENCE_LENGTH 1000
 %}
 
 %token ROBOT KIND_WORD ROTATION_VERB DEG_QUANTITY DEGREES MOVEMENT_VERB DISTANCE UNITS COMMA NEXO FINAL_CONNECTOR TO THE RIGHT LEFT FRONT BACK CLOCKWISE COUNTERCLOCKWISE BACKWARDS
@@ -46,21 +53,21 @@ ACTION: ROTATION
  ;
 
 ROTATION: ROTATION_VERB DEG_QUANTITY CLK { 
-	printf("TURN %d\n", $3); 
+	printf("TURN, %d\n", $3); 
 	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "TURN %d\n", $3);
+	fprintf(output_file, "TURN, %d\n", $3);
 	fclose(output_file);
   }
  | ROTATION_VERB DEG_QUANTITY DEGREES { 
- 	printf("TURN %d\n", $2); 
+ 	printf("TURN, %d\n", $2); 
    	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "TURN %d\n", $2);
+	fprintf(output_file, "TURN, %d\n", $2);
 	fclose(output_file);
    }
  | ROTATION_VERB DIR { 
- 	printf("TURN 270\n"); 
+ 	printf("TURN, 270\n"); 
    	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "Turn 270\n");
+	fprintf(output_file, "TURN, 270\n");
 	fclose(output_file);
    }
  ;
@@ -107,28 +114,28 @@ DIR: ORIENTATION_1
  ;
 
 ORIENTATION_1: RIGHT { 
-	printf("TURN 270\n"); 
+	printf("TURN, 270\n"); 
    	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "Turn 270\n");
+	fprintf(output_file, "TURN, 270\n");
 	fclose(output_file);
    }
  | LEFT { 
- 	printf("TURN 90\n"); 
+ 	printf("TURN, 90\n"); 
    	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "Turn 90\n");
+	fprintf(output_file, "TURN, 90\n");
 	fclose(output_file);
    }
  | FRONT
  | BACK { 
- 	printf("TURN 180\n"); 
+ 	printf("TURN, 180\n"); 
  	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "Turn 180\n");
+	fprintf(output_file, "TURN, 180\n");
 	fclose(output_file);
    }
  | BACKWARDS { 
- 	printf("TURN 180\n"); 
+ 	printf("TURN, 180\n"); 
    	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "Turn 180\n");
+	fprintf(output_file, "TURN, 180\n");
 	fclose(output_file);
    }
  ;
@@ -141,16 +148,36 @@ CONNECTOR: COMMA NEXO INSTRUCTION
 %%
 
 int main(void) {
-	// Abre el archivo .asm en modo escritura. "w" -write
-    output_file = fopen("output.asm", "w"); 
-
-    if (output_file == NULL) {
-        fprintf(stderr, "No se pudo abrir el archivo de salida.\n");
+    
+    input_file = fopen("input.txt", "r");
+    
+    if (!input_file) {
+        fprintf(stderr, "Error opening input file.\n");
         return 1;
     }
     
+     yyin = input_file;
+    // Abre el archivo .asm en modo escritura. "w" -write
+    output_file = fopen("output.asm", "w"); 
+    
     // Llama al parser (yyparse)
-    yyparse();
+    if (yyparse() != 0) {
+        fprintf(stderr, "Parsing failed.\n");
+        return 1;
+    }
+    
+    
+    // Process the sentence here
+    // printf("Sentence: %s\n", sentence);
+    
+    
+    if (!output_file) {
+        fprintf(stderr, "No se pudo abrir el archivo de salida.\n");
+        return 1;
+    }
+
+    
+    fclose(input_file);
     
     // Cierra el archivo después de haber finalizado
     fclose(output_file);

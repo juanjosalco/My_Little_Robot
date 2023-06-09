@@ -28,7 +28,6 @@ extern int yylval;
 
 [ \t\n]+ /* ignore whitespace */
 
-. { printf("Unrecognized character: %s\n", yytext); }
 
 %%
 
