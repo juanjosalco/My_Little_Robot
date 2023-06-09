@@ -5,14 +5,15 @@
 #include "y.tab.h"
 
 extern int yylval;
-int yylex();
-void yyerror(const char *s);
-FILE *output_file;
-FILE *input_file;
 extern FILE *yyin;
 extern FILE *output_file;
+int yylex();
+FILE *output_file;
+FILE *input_file;
 
-#define MAX_SENTENCE_LENGTH 1000
+// when an error occurs (yyerror function is called), yylex() is called to clear the input buffer and obtain a new token. The new token is discarded by not assigning it to any variable.
+void yyerror(const char *str);
+
 %}
 
 %token ROBOT KIND_WORD ROTATION_VERB DEG_QUANTITY DEGREES MOVEMENT_VERB DISTANCE UNITS COMMA NEXO FINAL_CONNECTOR TO THE RIGHT LEFT FRONT BACK CLOCKWISE COUNTERCLOCKWISE BACKWARDS
@@ -35,13 +36,13 @@ ACTION: ROTATION
  | MOVEMENT DIR {
  	printf("MOV %d\n", $1);
  	
- 	// Abre el archivo .asm en modo adicion, "a" - add
+ 	// Opens the file .asm in add mode, "a" 
  	output_file = fopen("output.asm", "a");
  	
- 	// Agrega la linea al archivo
+ 	// Add the line to the file
 	fprintf(output_file, "MOV %d\n", $1);
 	
-	// Cierra el archivo
+	// Closes the file
 	fclose(output_file);
    }
  | MOVEMENT { 
@@ -149,6 +150,7 @@ CONNECTOR: COMMA NEXO INSTRUCTION
 
 int main(void) {
     
+    // Declares in a variable the information from the file opened with "r" 
     input_file = fopen("input.txt", "r");
     
     if (!input_file) {
@@ -156,30 +158,23 @@ int main(void) {
         return 1;
     }
     
-     yyin = input_file;
-    // Abre el archivo .asm en modo escritura. "w" -write
+    // Assign the input file to yyin, which is the file pointer used by lex
+    yyin = input_file;
+
+    // Opens the file .asm in write mode "w" and assigns it to the global output_file variable, which is used by yacc actions
     output_file = fopen("output.asm", "w"); 
     
-    // Llama al parser (yyparse)
     if (yyparse() != 0) {
         fprintf(stderr, "Parsing failed.\n");
         return 1;
-    }
-    
-    
-    // Process the sentence here
-    // printf("Sentence: %s\n", sentence);
-    
+    } 
     
     if (!output_file) {
         fprintf(stderr, "No se pudo abrir el archivo de salida.\n");
         return 1;
     }
 
-    
-    fclose(input_file);
-    
-    // Cierra el archivo después de haber finalizado
+    // Closes output file
     fclose(output_file);
     
     return 0;
@@ -187,4 +182,7 @@ int main(void) {
 
 void yyerror(const char *str) {
     fprintf(stderr,"error: %s\n",str);
+    
+    // Write the error message to the output file
+    //fprintf(output_file, "error: %s\n", str);
 }
