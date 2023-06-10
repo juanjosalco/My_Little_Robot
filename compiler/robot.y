@@ -65,12 +65,7 @@ ROTATION: ROTATION_VERB DEG_QUANTITY CLK {
 	fprintf(output_file, "TURN, %d\n", $2);
 	fclose(output_file);
    }
- | ROTATION_VERB DIR { 
- 	printf("TURN, 270\n"); 
-   	output_file = fopen("../cpu/src/output.asm", "a");
-	fprintf(output_file, "TURN, 270\n");
-	fclose(output_file);
-   }
+ | ROTATION_VERB DIR
  ;
 
 CLK: DEGREES TO THE RIGHT { 
