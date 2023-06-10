@@ -37,7 +37,7 @@ ACTION: ROTATION
  	printf("MOV, %d\n", $1);
  	
  	// Opens the file .asm in add mode, "a" 
- 	output_file = fopen("output.asm", "a");
+ 	output_file = fopen("../cpu/src/output.asm", "a");
  	
  	// Add the line to the file
 	fprintf(output_file, "MOV, %d\n", $1);
@@ -47,7 +47,7 @@ ACTION: ROTATION
    }
  | MOVEMENT { 
  	printf("MOV, %d\n", $1);
- 	output_file = fopen("output.asm", "a");
+ 	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "MOV, %d\n", $1);
 	fclose(output_file);
    }
@@ -55,19 +55,19 @@ ACTION: ROTATION
 
 ROTATION: ROTATION_VERB DEG_QUANTITY CLK { 
 	printf("TURN, %d\n", $3); 
-	output_file = fopen("output.asm", "a");
+	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, %d\n", $3);
 	fclose(output_file);
   }
  | ROTATION_VERB DEG_QUANTITY DEGREES { 
  	printf("TURN, %d\n", $2); 
-   	output_file = fopen("output.asm", "a");
+   	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, %d\n", $2);
 	fclose(output_file);
    }
  | ROTATION_VERB DIR { 
  	printf("TURN, 270\n"); 
-   	output_file = fopen("output.asm", "a");
+   	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, 270\n");
 	fclose(output_file);
    }
@@ -116,26 +116,26 @@ DIR: ORIENTATION_1
 
 ORIENTATION_1: RIGHT { 
 	printf("TURN, 270\n"); 
-   	output_file = fopen("output.asm", "a");
+   	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, 270\n");
 	fclose(output_file);
    }
  | LEFT { 
  	printf("TURN, 90\n"); 
-   	output_file = fopen("output.asm", "a");
+   	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, 90\n");
 	fclose(output_file);
    }
  | FRONT
  | BACK { 
  	printf("TURN, 180\n"); 
- 	output_file = fopen("output.asm", "a");
+ 	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, 180\n");
 	fclose(output_file);
    }
  | BACKWARDS { 
  	printf("TURN, 180\n"); 
-   	output_file = fopen("output.asm", "a");
+   	output_file = fopen("../cpu/src/output.asm", "a");
 	fprintf(output_file, "TURN, 180\n");
 	fclose(output_file);
    }
@@ -162,7 +162,7 @@ int main(void) {
     yyin = input_file;
 
     // Opens the file .asm in write mode "w" and assigns it to the global output_file variable, which is used by yacc actions
-    output_file = fopen("output.asm", "w"); 
+    output_file = fopen("../cpu/src/output.asm", "w"); 
     
     if (yyparse() != 0) {
         fprintf(stderr, "Parsing failed.\n");

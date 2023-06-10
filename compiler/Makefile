@@ -9,4 +9,4 @@ clean:
 	rm -rf y.tab.c
 	rm -rf y.tab.h
 	rm -rf y.tab.h.gch
-	rm -rf output.asm
+	rm -rf ../cpu/src/output.asm
