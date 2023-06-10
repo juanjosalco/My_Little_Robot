@@ -51,7 +51,6 @@ ACTION: ROTATION
 	fprintf(output_file, "MOV, %d\n", $1);
 	fclose(output_file);
    }
- ;
 
 ROTATION: ROTATION_VERB DEG_QUANTITY CLK { 
 	printf("TURN, %d\n", $3); 
@@ -160,7 +159,9 @@ int main(void) {
     output_file = fopen("../cpu/src/output.asm", "w"); 
     
     if (yyparse() != 0) {
+    	output_file = fopen("../cpu/src/output.asm", "a");
         fprintf(stderr, "Parsing failed.\n");
+    	fclose(output_file);
         return 1;
     } 
     
@@ -177,6 +178,8 @@ int main(void) {
 
 void yyerror(const char *str) {
     // Write the error message to the output file
+    output_file = fopen("../cpu/src/output.asm", "w");
     fprintf(output_file, "error: %s\n", str);
     fprintf(stderr,"error: %s\n",str);
+    fclose(output_file);
 }
