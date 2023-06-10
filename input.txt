@@ -1,1 +1,1 @@
-Robot please turn 90 degrees to the right, then move 2 units to the right
+Robot please turn right, then move 5 units
