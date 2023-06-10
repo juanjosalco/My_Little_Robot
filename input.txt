@@ -1,1 +1,1 @@
-Robot please turn to the right, then move 5 units left
+Robot please turn to the right, then turn 5 units left
