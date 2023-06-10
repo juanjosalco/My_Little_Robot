@@ -176,8 +176,7 @@ int main(void) {
 }
 
 void yyerror(const char *str) {
-    fprintf(stderr,"error: %s\n",str);
-    
     // Write the error message to the output file
-    //fprintf(output_file, "error: %s\n", str);
+    fprintf(output_file, "error: %s\n", str);
+    fprintf(stderr,"error: %s\n",str);
 }

@@ -29,10 +29,10 @@ extern int yylval;
 [ \t\n]+ /* ignore whitespace */
 
 . {
-    printf("invalid character: %s\n", yytext);
+    printf("error: invalid character: %s\n", yytext);
     FILE *output_file;
     output_file = fopen("../cpu/src/output.asm", "a");
-    fprintf(output_file, "invalid character: %s\n", yytext);
+    fprintf(output_file, "error: invalid character: %s\n", yytext);
     exit(1);
 }
 
