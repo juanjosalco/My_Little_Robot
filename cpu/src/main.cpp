@@ -159,7 +159,10 @@ void showMatrix(){
 }
 
 
-int main(){
+int main(int argc, char* argv[]){
+    if (argc > 1) {
+        freopen("../../testing/result.txt", "w", stdout);
+    }
     // Initializes the Matrix
     fillMatrix();
     // Sets the initial position of the Robot

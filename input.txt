@@ -1,1 +1,1 @@
-Robot please turn to the right, then turn 5 units left
+Robot please move 2 units backwards, then move 1 units left, finally move 2 blocks

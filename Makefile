@@ -5,9 +5,12 @@ all:
 compile:
 	cd compiler; make; ./robot.exe
 
-cpu:
+run:
 	cd cpu/src ; g++ -std=c++17 main.cpp -o main.exe ; ./main.exe
 
 clean:
 	cd compiler; make clean
 	cd cpu/src ; rm -rf main.exe
+
+test:
+	cd testing; python3 test.py
