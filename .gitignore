@@ -5,3 +5,5 @@ lex.yy.c
 robot
 main
 *.asm
+__pycache__
+result.txt
