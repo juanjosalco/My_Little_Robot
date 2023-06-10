@@ -109,10 +109,10 @@ void moveRobot(int numOfSteps){
 }
 
 void instructionSelected(string inst, int val){
-    if(inst == "MOV"){
+    if(inst == "MOV,"){
         checkLimits(val);
         moveRobot(val);
-    } else if(inst == "TURN"){
+    } else if(inst == "TURN,"){
         setDirection(val);
     } else {
         exit(-1);
