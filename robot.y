@@ -40,7 +40,7 @@ ACTION: ROTATION
  	output_file = fopen("output.asm", "a");
  	
  	// Add the line to the file
-	fprintf(output_file, "MOV %d\n", $1);
+	fprintf(output_file, "MOV, %d\n", $1);
 	
 	// Closes the file
 	fclose(output_file);
@@ -48,7 +48,7 @@ ACTION: ROTATION
  | MOVEMENT { 
  	printf("MOV %d\n", $1);
  	output_file = fopen("output.asm", "a");
-	fprintf(output_file, "MOV %d\n", $1);
+	fprintf(output_file, "MOV, %d\n", $1);
 	fclose(output_file);
    }
  ;
