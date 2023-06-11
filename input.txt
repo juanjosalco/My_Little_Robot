@@ -1,1 +1,1 @@
-Robot please go 3 units backwards, then move 1 units forward, next move 2 units to the right, finally move 1 blocks to the front
+Robot please move 8 units
