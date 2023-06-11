@@ -14,3 +14,6 @@ clean:
 
 test:
 	cd testing; python3 test.py
+
+run-test:
+	cd cpu/src ; g++ -std=c++17 main.cpp -o main.exe ; ./main.exe arg

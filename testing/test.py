@@ -1,11 +1,30 @@
-import subprocess
+import os
 from time import sleep
+
+def run(input_instructions_list, expected_output_list, tests):
+    for i, instructions in enumerate(input_instructions_list):
+        f = open("../input.txt", "w")
+        f.write(instructions)
+        f.close()
+        # Compile and run the program
+        os.system("cd .. && make compile")
+        os.system("cd .. && make run-test")
+        outputFile = open("result.txt", "r")
+        output = outputFile.read()
+        outputFile.close()
+        output = output.replace("\n", "").replace(" ", "").replace("\t", "")
+        expected_output_list[i] = expected_output_list[i].replace("\n", "").replace(" ", "").replace("\t", "")
+        
+        if output == expected_output_list[i]:
+            tests.append(f"✅ Test {i+1}: PASS")
+        else:
+            tests.append(f"❌ Test {i+1}: FAIL")
 
 def main():
     # Define the input instructions as a list of strings
     input_instructions_list = [
         "Robot please move 3 units to the left",
-        "Robot please move 1 units to the right, then move one unit forward",
+        "Robot please move 1 units to the right, then move 1 units forward",
         "Robot please turn 175 degrees"
     ]
 
@@ -85,31 +104,15 @@ O O O O O O O O O O
     """
 
     ]
-
-    # Write the input instructions to a file
-    sleep(0.5)
-    with open("../input.txt", "w") as f:
-        for i, instructions in enumerate(input_instructions_list):
-            f.write(instructions)
-            # Compile the program using the Makefile
-            compile = subprocess.Popen(["cd .. && make compile"], shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            # Wait for the compilation to finish
-            compile.wait()
-            # Run the program with the input instructions and capture the output
-            process = subprocess.Popen(["../cpu/src/main.exe"], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            process.wait()
-            with open("result.txt", "r") as output_file:
-                stdout = output_file.read()
-                # Replace the new line character with an empty string and the tab character with an empty string
-                stdout = stdout.replace("\t", "").replace("\n", "").replace(" ", "")
-            expected_output_list[i] = expected_output_list[i].replace("\t", "").replace("\n", "").replace(" ", "")
-            if stdout == expected_output_list[i]:
-                print(f"✅ Test {i+1}: PASS")
-            else:
-                print(f"❌ Test {i+1}: FAIL")
-                
-            # Wait for 1 second before running the next test
-            sleep(1)
+    tests = []
+    run(input_instructions_list, expected_output_list, tests)       
+    os.system("clear")
+    print("Test Results:")
+    sleep(1.5)
+    for test in tests:
+        print(test)
+        sleep(1.5)
+    os.remove("result.txt")
         
 if __name__ == "__main__":
     main()
