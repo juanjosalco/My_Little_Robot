@@ -115,6 +115,7 @@ void instructionSelected(string inst, int val){
     } else if(inst == "TURN,"){
         setDirection(val);
     } else {
+        cout << "\n! INVALID INSTRUCTION !" << endl;
         exit(-1);
     }
 }
