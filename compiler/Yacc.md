@@ -8,6 +8,11 @@
 ## Introduction
 Yacc, is a parser generator that takes a set of context-free grammar rules as input and produces C code for a parser that recognizes the structure of the input based on those rules. It uses a bottom-up parsing technique called LALR(1) parsing to construct a parse tree for the input text. The generated parser can be used to validate the syntax of the input and perform subsequent actions based on the recognized structure.
 
+## Description
+This is a simple robot that can move around a 10x10 grid. It can be placed on the grid, moved and rotated. The grammar provided allows the user to input a series of instructions for the robot to follow. These instructions can include movement and rotation commands. The grammar also includes rules for handling connectors and final connectors, allowing the user to chain together multiple instructions in a single program and have a more natural interaction with the robot.
+
+By using the grammar, the user can create programs that control the robot's movements and report its position on the grid. This can be useful for a variety of applications, such as simulating the movement of a physical robot or testing algorithms for robot navigation.
+
 ## Context-Free Grammar
 The code defines several tokens and rules for processing instructions. The main entry point for the parser is the S rule, which expects a ROBOT followed by an INSTRUCTION.
 
@@ -60,4 +65,32 @@ robot please rotate 90 degrees to the right and then to the left move 5 units fo
 ```
 In this example `to the left` is not in the correct order, so it will raise syntax error and parsing error.
 
+### Accepted Input Examples
+**Input 1**
+```text
+robot please rotate 90 degrees to the right and then move 5 steps forward
+```
 
+**Output 1**
+```text
+TURN, 270
+MOV, 5
+```
+
+**Input 2**
+```text
+Robot please turn 90 degrees to the right, then move 5 units to the right, then move 10 steps, next move 15 units to the back, then move 5 steps backwards, finally turn 180 degrees
+```
+
+**Output 2**
+```text
+TURN, 270
+TURN, 270
+MOV, 5
+MOV, 10
+TURN, 180
+MOV, 15
+TURN, 180
+MOV, 5
+TURN, 180
+```
