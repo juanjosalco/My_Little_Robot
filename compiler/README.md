@@ -10,13 +10,11 @@ By using the grammar, the user can create programs that control the robot's move
 
 This project was implemented using the following tools:
 
-- C++: A general-purpose programming language that was used to write the code for the robot program. C++ is a popular language for developing high-performance applications and is widely used in the software industry.
-
 - Flex: A lexical analyzer generator that was used to generate the scanner for the robot program. Flex is a tool that generates code for scanning input streams and is commonly used in the development of compilers and interpreters.
 
 - Yacc (Bison): A parser generator that was used to generate the parser for the robot program. Yacc is a tool that generates code for parsing input streams and is commonly used in the development of compilers and interpreters.
 
-These tools were chosen because they are widely used in the development of compilers and interpreters, and are well-suited for implementing the grammar-based approach used in this project. C++ was chosen as the programming language because of its performance and popularity in the software industry. Flex and Yacc were chosen because of their ease of use and ability to generate efficient code for scanning and parsing input streams.
+These tools were chosen because they are widely used in the development of compilers and interpreters, and are well-suited for implementing the grammar-based approach used in this project. Flex and Yacc were chosen because of their ease of use and ability to generate efficient code for scanning and parsing input streams.
 
 ## Context Free Grammar
 
@@ -60,6 +58,8 @@ Here is the context free grammar used to parse the input:
 
 The rotations are considered to be always counterclockwise, that's why the grammar is able to identify when the user wants to rotate clockwise and it transforms the rotation to its equivalent counterclockwise rotation, making the interaction with the robot more natural.
 
+The grammar also allows the user to chain together multiple instructions in a single program and have a more natural interaction with the robot.
+
 ## Input and Output
 
 - Input: The input language code is provided in the `input.txt` file.
@@ -83,8 +83,19 @@ The Yacc code follows a standard parsing process to analyze the input code. Here
 - If an error occurs during the parsing process, the `yyerror()` function is called. It writes an error message to the output file and displays the error on the console.
 - The error message provides information about the nature of the error and helps identify the issue in the input code.
 
+Some inputs that are rejected by the grammar are if you use unexpected words, for example:
+```text
+robot please rotate 90 degrees to the right and then jump 5 steps forward
+```
+In this example `jump` is not a valid word so it will raise an error of an unexpected token.
 
-### Example Inputs
+Another example is if you use a word that is not in the correct order, for example:
+```text
+robot please rotate 90 degrees to the right and then to the left move 5 units forward
+```
+In this example `to the left` is not in the correct order, so it will raise syntax error and parsing error.
+
+### Accepted Input Examples
 **Input 1**
 ```text
 robot please rotate 90 degrees to the right and then move 5 steps forward
@@ -92,8 +103,8 @@ robot please rotate 90 degrees to the right and then move 5 steps forward
 
 **Output 1**
 ```text
-TURN 270
-MOV 5
+TURN, 270
+MOV, 5
 ```
 
 **Input 2**
@@ -103,20 +114,20 @@ Robot please turn 90 degrees to the right, then move 5 units to the right, then 
 
 **Output 2**
 ```text
-TURN 270
-TURN 270
-MOV 5
-MOV 10
-TURN 180
-MOV 15
-TURN 180
-MOV 5
-TURN 180
+TURN, 270
+TURN, 270
+MOV, 5
+MOV, 10
+TURN, 180
+MOV, 15
+TURN, 180
+MOV, 5
+TURN, 180
 ```
 
 ## Installation
 
-To run the program, you can follow these steps:
+To run the compiler, you can follow these steps:
 
 1. Clone the repository to your local machine and navigate to the project directory:
 ```bash
@@ -124,9 +135,9 @@ git clone https://github.com/juanjosalco/My_Little_Robot.git
 cd My_Little_Robot
 ```
 
-2. Run the makefile to compile the lex and yacc files and generate the executable using make.
+2. Run the makefile to compile the lex and yacc files and generate the executable using the Makefile.
 
 ```bash
-make
+make compile
 ```
 
