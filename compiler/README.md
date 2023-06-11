@@ -72,8 +72,8 @@ The Yacc code follows a standard parsing process to analyze the input code. Here
 1. The `main()` function serves as the entry point of the program. It opens the input file, sets up file pointers, and prepares the output file.
 2. The `yyparse()` function is called to initiate the parsing process.
 3. The Yacc parser calls the Lex code (lexer) using the `yylex()` function to obtain tokens for each input symbol.
-4. The lexer processes the input, identifies patterns, and generates tokens based on the lexical rules defined in `lex_code.l`.
-5. The Yacc parser processes the tokens according to the grammar rules and associated actions defined in `yacc_code.y`.
+4. The lexer processes the input, identifies patterns, and generates tokens based on the lexical rules defined in `robot.l`.
+5. The Yacc parser processes the tokens according to the grammar rules and associated actions defined in `robot.y`.
 6. During the parsing process, the Yacc actions manipulate the output file by opening it, writing specific content (instructions or messages), and closing it.
 7. If a parsing error occurs, the `yyerror()` function is called to handle the error. It writes an error message to the output file and displays the error on the console.
 8. Once the parsing is complete, the output file is closed, and the program terminates.
