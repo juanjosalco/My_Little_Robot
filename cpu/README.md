@@ -3,6 +3,6 @@
 ## Description of the problem
 
 ## NFA Diagram
-![My Little Robot NFA Diagram](/My_Little_Robot/NFA.jpg)
+![My Little Robot NFA Diagram](/NFA.jpg)
 
 [Link to the source code](https://github.com/juanjosalco/My_Little_Robot)
