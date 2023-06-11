@@ -60,6 +60,30 @@ Here is the context free grammar used to parse the input:
 
 The rotations are considered to be always counterclockwise, that's why the grammar is able to identify when the user wants to rotate clockwise and it transforms the rotation to its equivalent counterclockwise rotation, making the interaction with the robot more natural.
 
+## Input and Output
+
+- Input: The input language code is provided in the `input.txt` file.
+- Output: The Yacc code generates an output file named `output.asm` located in the `../cpu/src/` directory. This file contains instructions or messages based on the parsed input code.
+
+## Parsing Process
+
+The Yacc code follows a standard parsing process to analyze the input code. Here's an overview of the steps involved:
+
+1. The `main()` function serves as the entry point of the program. It opens the input file, sets up file pointers, and prepares the output file.
+2. The `yyparse()` function is called to initiate the parsing process.
+3. The Yacc parser calls the Lex code (lexer) using the `yylex()` function to obtain tokens for each input symbol.
+4. The lexer processes the input, identifies patterns, and generates tokens based on the lexical rules defined in `lex_code.l`.
+5. The Yacc parser processes the tokens according to the grammar rules and associated actions defined in `yacc_code.y`.
+6. During the parsing process, the Yacc actions manipulate the output file by opening it, writing specific content (instructions or messages), and closing it.
+7. If a parsing error occurs, the `yyerror()` function is called to handle the error. It writes an error message to the output file and displays the error on the console.
+8. Once the parsing is complete, the output file is closed, and the program terminates.
+
+## Error Handling
+
+- If an error occurs during the parsing process, the `yyerror()` function is called. It writes an error message to the output file and displays the error on the console.
+- The error message provides information about the nature of the error and helps identify the issue in the input code.
+
+
 ### Example Inputs
 **Input 1**
 ```text
