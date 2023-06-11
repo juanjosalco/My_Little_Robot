@@ -1,6 +1,23 @@
 # Yacc
 Yacc,  is a parser generator that takes a set of context-free grammar rules as input and produces C code for a parser that recognizes the structure of the input based on those rules. It uses a bottom-up parsing technique called LALR(1) parsing to construct a parse tree for the input text. The generated parser can be used to validate the syntax of the input and perform subsequent actions based on the recognized structure.
 
+## Context Free Grammar
+The code defines several tokens and rules for processing instructions. The main entry point for the parser is the S rule, which expects a ROBOT followed by an INSTRUCTION.
+
+An INSTRUCTION can either be a DO statement or a DO statement preceded by a CONNECTOR. A DO statement can be further divided into a KIND_WORD followed by an ACTION, or just an ACTION.
+
+An ACTION can represent a ROTATION, a MOVEMENT followed by a DIR, or simply a MOVEMENT. Each ACTION triggers a corresponding output and appends the generated instruction to the "output.asm" file.
+
+A ROTATION can take different forms depending on the input. It can consist of a ROTATION_VERB followed by a DEG_QUANTITY and a CLK, or a ROTATION_VERB followed by a DEG_QUANTITY and DEGREES, or a ROTATION_VERB followed by a DIR.
+
+A CLK represents the direction of rotation, such as "TO THE RIGHT", "TO THE LEFT", "CLOCKWISE", "COUNTERCLOCKWISE", "RIGHT", or "LEFT". The code includes logic to convert certain angles (90 and 270 degrees) to their complementary angles.
+
+A MOVEMENT consists of a MOVEMENT_VERB followed by a DISTANCE and UNITS. The DISTANCE value is stored and used for output generation.
+
+A DIR represents the direction of movement, such as "TO THE" followed by an ORIENTATION_1. The ORIENTATION_1 can be "RIGHT", "LEFT", "FRONT", "BACK", or "BACKWARDS". Similar to rotations, the code outputs corresponding instructions for each direction.
+
+A CONNECTOR is used to connect multiple instructions together. It can consist of a COMMA followed by a NEXO and an INSTRUCTION, or a COMMA followed by an INSTRUCTION, or a COMMA followed by a FINAL_CONNECTOR and a DO. A FINAL_CONNECTOR is not defined in the given code snippet.
+
 ## Input and Output
 
 - Input: The input language code is provided in the `input.txt` file.
