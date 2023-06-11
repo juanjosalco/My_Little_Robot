@@ -1,5 +1,5 @@
 # Yacc
-Yacc,  is a parser generator that takes a set of context-free grammar rules as input and produces C code for a parser that recognizes the structure of the input based on those rules. It uses a bottom-up parsing technique called LALR(1) parsing to construct a parse tree for the input text. The generated parser can be used to validate the syntax of the input and perform subsequent actions based on the recognized structure.
+Yacc, is a parser generator that takes a set of context-free grammar rules as input and produces C code for a parser that recognizes the structure of the input based on those rules. It uses a bottom-up parsing technique called LALR(1) parsing to construct a parse tree for the input text. The generated parser can be used to validate the syntax of the input and perform subsequent actions based on the recognized structure.
 
 ## Context-Free Grammar
 The code defines several tokens and rules for processing instructions. The main entry point for the parser is the S rule, which expects a ROBOT followed by an INSTRUCTION.
