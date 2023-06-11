@@ -35,31 +35,31 @@ def main():
     # Define the expected output as a list of strings
     expected_output_list = [
     """ 
-    !--------------- Welcome to MyLittleRobot ---------------!
+!--------------- Welcome to MyLittleRobot ---------------!
 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O X O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O X O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
 
-    Robot has finished the instructions
+Robot has finished the instructions
 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O * O O O O 
-    O O O O O * O O O O 
-    O O O O O * O O O O 
-    O O O O O * O O O O 
-    O O O O O X O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
-    O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O X O O O O 
+O O O O O * O O O O 
+O O O O O * O O O O 
+O O O O O * O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O  
     """,
     """ 
     !--------------- Welcome to MyLittleRobot ---------------!

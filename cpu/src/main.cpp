@@ -129,8 +129,8 @@ void readFile(){
     string instruction = "";
     int value = 0;
 
-    while(!archivo.eof()){
-        archivo >> instruction >> value;
+    while(archivo >> instruction){
+        archivo >> value;
         instructionSelected(instruction, value);
     }
     archivo.close();
