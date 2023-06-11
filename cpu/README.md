@@ -8,7 +8,7 @@ For the project, a C++ code will serve as the Robot CPU, which will read a file 
 In case any given invalid instruction is read, the code will exit displaying an error. This also applies in case an instruction causes the robot to cross the accepted area.
 
 
-## NFA Diagram
+## Robot CPU NFA Diagram
 ![My Little Robot NFA Diagram](NFA.jpg)
 
 [Link to the source code](https://github.com/juanjosalco/My_Little_Robot)
