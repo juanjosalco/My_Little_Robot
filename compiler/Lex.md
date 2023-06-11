@@ -8,6 +8,11 @@
 ## Introduction
 Lex is a lexical analyzer generator that takes a set of regular expressions as input and generates C code for a scanner that tokenizes the input text according to the specified patterns. It uses a finite state machine to match the regular expressions and perform actions associated with each pattern. The generated scanner can be incorporated into a larger program or used as a standalone component.
 
+## Description
+This is a simple robot that can move around a 10x10 grid. It can be placed on the grid, moved and rotated. The grammar provided allows the user to input a series of instructions for the robot to follow. These instructions can include movement and rotation commands. The grammar also includes rules for handling connectors and final connectors, allowing the user to chain together multiple instructions in a single program and have a more natural interaction with the robot.
+
+By using the grammar, the user can create programs that control the robot's movements and report its position on the grid. This can be useful for a variety of applications, such as simulating the movement of a physical robot or testing algorithms for robot navigation.
+
 ## Context Free Grammar
 
 Here are the accepted words for each token:
