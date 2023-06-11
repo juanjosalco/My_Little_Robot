@@ -109,12 +109,13 @@ void moveRobot(int numOfSteps){
 }
 
 void instructionSelected(string inst, int val){
-    if(inst == "MOV"){
+    if(inst == "MOV,"){
         checkLimits(val);
         moveRobot(val);
-    } else if(inst == "TURN"){
+    } else if(inst == "TURN,"){
         setDirection(val);
     } else {
+        cout << "\n! INVALID INSTRUCTION !" << endl;
         exit(-1);
     }
 }
@@ -159,7 +160,10 @@ void showMatrix(){
 }
 
 
-int main(){
+int main(int argc, char* argv[]){
+    if (argc > 1) {
+        freopen("../../testing/result.txt", "w", stdout);
+    }
     // Initializes the Matrix
     fillMatrix();
     // Sets the initial position of the Robot
