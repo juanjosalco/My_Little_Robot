@@ -25,7 +25,8 @@ def main():
     input_instructions_list = [
         "Robot please move 3 units to the left",
         "Robot please move 1 units to the right, then move 1 units forward",
-        "Robot please turn 175 degrees"
+        "Robot please turn 175 degrees",
+        "Robot please go 3 units backwards, then move 1 units forward, next move 2 units to the right, finally move 1 blocks to the front",
     ]
 
     # Define the expected output as a list of strings
@@ -101,8 +102,36 @@ O O O O O O O O O O
 
 ! INVALID INSTRUCTION !
 
+    """,
     """
+    
+!--------------- Welcome to MyLittleRobot ---------------!
 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O X O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+
+Robot has finished the instructions
+
+O O O O O O O O O O 
+O O O O O O O O O O 
+O X O O O O O O O O 
+O * O O O O O O O O 
+O * O O O O O O O O 
+O * * * * * O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+
+    """
     ]
     tests = []
     run(input_instructions_list, expected_output_list, tests)       
