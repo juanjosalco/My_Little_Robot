@@ -27,6 +27,7 @@ def main():
         "Robot please move 1 units to the right, then move 1 units forward",
         "Robot please turn 175 degrees",
         "Robot please go 3 units backwards, then move 1 units forward, next move 2 units to the right, finally move 1 blocks to the front",
+        "Robot please move 8 units"
     ]
 
     # Define the expected output as a list of strings
@@ -130,6 +131,23 @@ O O O O O O O O O O
 O O O O O O O O O O 
 O O O O O O O O O O 
 O O O O O O O O O O 
+
+    """,
+    """
+    
+!--------------- Welcome to MyLittleRobot ---------------!
+
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O X O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+O O O O O O O O O O 
+! INVALID MOVE !
 
     """
     ]
