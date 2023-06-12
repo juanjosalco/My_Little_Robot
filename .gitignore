@@ -7,3 +7,4 @@ main
 *.asm
 __pycache__
 result.txt
+*.pdf

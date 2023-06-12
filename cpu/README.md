@@ -53,4 +53,6 @@ This section of the CPU code is in charge of detecting the inctruction read from
 ## Robot CPU NFA Diagram
 ![My Little Robot NFA Diagram](NFA.jpg)
 
-[Link to the source code](https://github.com/juanjosalco/My_Little_Robot)
+## Link to the source code
+
+[https://github.com/juanjosalco/My_Little_Robot](https://github.com/juanjosalco/My_Little_Robot)
