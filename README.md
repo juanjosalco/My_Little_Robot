@@ -20,6 +20,8 @@ This project was implemented using the following tools:
 
 - Yacc (Bison): A parser generator that was used to generate the parser for the robot program. Yacc is a tool that generates code for parsing input streams and is commonly used in the development of compilers and interpreters.
 
+- C++: This language was used to create the cpu and read instruction by instruction in the assembly file in order to print a matrix of 10x10 and the path the robot followed.
+
 These tools were chosen because they are widely used in the development of compilers and interpreters, and are well-suited for implementing the grammar-based approach used in this project. Flex and Yacc were chosen because of their ease of use and ability to generate efficient code for scanning and parsing input streams.
 
 ## Context Free Grammar
@@ -190,11 +192,11 @@ This section of the CPU code is in charge of detecting the inctruction read from
 
 
 ## Robot CPU NFA Diagram
-![My Little Robot NFA Diagram](NFA.jpg)
+![My Little Robot NFA Diagram](cpu/NFA.jpg)
 
 [Link to the source code](https://github.com/juanjosalco/My_Little_Robot)
 
-# My Little Robot Test Automation
+# Test Automation
 
 The file test contains a Python script for automating tests for the MyLittleRobot program. It allows you to define a set of input instructions and their expected outputs, and then runs the program with each input and compares the output to the expected result.
 
