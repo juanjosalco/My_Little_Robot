@@ -6,6 +6,8 @@
 - Juan José Salazar Cortés | A01642126
 - Mariana Esquivel Hernández | A01641244
 
+##### Link to the repository:
+[https://github.com/juanjosalco/My_Little_Robot](https://github.com/juanjosalco/My_Little_Robot)
 ## Description
 This is a simple robot that can move around a 10x10 grid. It can be placed on the grid, moved and rotated. 
 The grammar provided allows the user to input a series of instructions for the robot to follow. These instructions can include movement and rotation commands. The grammar also includes rules for handling connectors and final connectors, allowing the user to chain together multiple instructions in a single program and have a more natural interaction with the robot.
@@ -193,8 +195,6 @@ This section of the CPU code is in charge of detecting the inctruction read from
 
 ## Robot CPU NFA Diagram
 ![My Little Robot NFA Diagram](cpu/NFA.jpg)
-
-[Link to the source code](https://github.com/juanjosalco/My_Little_Robot)
 
 # Test Automation
 
