@@ -1,9 +1,4 @@
 # Lex
-##### Authors:
-- Armando Terrazas Gómez | A01640924
-- Fernando Gómez Martínez | A01641228
-- Juan José Salazar Cortés | A01642126
-- Mariana Esquivel Hernández | A01641244
 
 ## Introduction
 Lex is a lexical analyzer generator that takes a set of regular expressions as input and generates C code for a scanner that tokenizes the input text according to the specified patterns. It uses a finite state machine to match the regular expressions and perform actions associated with each pattern. The generated scanner can be incorporated into a larger program or used as a standalone component.

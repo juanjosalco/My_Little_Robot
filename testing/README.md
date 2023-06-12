@@ -1,10 +1,4 @@
 # My Little Robot Test Automation
-##### Authors:
-- Armando Terrazas Gómez | A01640924
-- Fernando Gómez Martínez | A01641228
-- Juan José Salazar Cortés | A01642126
-- Mariana Esquivel Hernández | A01641244
-
 ## Introduction
 The file test contains a Python script for automating tests for the MyLittleRobot program. It allows you to define a set of input instructions and their expected outputs, and then runs the program with each input and compares the output to the expected result.
 

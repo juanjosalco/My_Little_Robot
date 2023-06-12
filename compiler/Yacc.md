@@ -1,9 +1,4 @@
 # Yacc
-##### Authors:
-- Armando Terrazas Gómez | A01640924
-- Fernando Gómez Martínez | A01641228
-- Juan José Salazar Cortés | A01642126
-- Mariana Esquivel Hernández | A01641244
 
 ## Introduction
 Yacc, is a parser generator that takes a set of context-free grammar rules as input and produces C code for a parser that recognizes the structure of the input based on those rules. It uses a bottom-up parsing technique called LALR(1) parsing to construct a parse tree for the input text. The generated parser can be used to validate the syntax of the input and perform subsequent actions based on the recognized structure.
